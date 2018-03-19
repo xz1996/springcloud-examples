@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8088
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # Because this application is eureka server(registry center), it don't need to register itself
+    register-with-eureka: false
+
+    # Because this application is eureka server(registry center), maintenance service instances is its duty,
+    # it also don't need to retrieve the service.
+    fetch-registry: false
+
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+

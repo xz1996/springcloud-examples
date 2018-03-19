@@ -1,0 +1,39 @@
+# the config file address : https://github.com/xz1996/springcloud-config/config-client/config-client-dev.yml
+spring:
+  application:
+    # correspond to the {application} part in the rule of config file
+    name: config-client
+  cloud:
+    config:
+      # correspond to the {profile} part in the rule of config file
+      profile: dev
+      # branch name, correspond to the {label} part in the rule of config file
+      label: dev
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: true
+      # add spring-retry and spring-boot-starter-aop to classpath firstly.
+      retry:
+        # the max retry times
+        max-attempts: 5
+    bus:
+      trace:
+        enabled: true
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: xz1996
+    password: 196806
+
+
+# Note that the eureka configuration should be placed ahead of spring.cloud.config.*
+eureka:
+  client:
+    # the eureka server url
+    service-url:
+      defaultZone: http://localhost:8088/eureka/
+
+server:
+  port: 8084

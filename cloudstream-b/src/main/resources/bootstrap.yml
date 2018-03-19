@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cloud-stream-b
+  cloud:
+    stream:
+      bindings:
+        # channel name(self-define)
+        selfInputChannel:
+          # consumer group(this ensures that there is only one consumer instance
+          # to consume the message when there are multiple instances)
+          group: consumer-b
+          # topic name(rabbitMQ exchange name)
+          destination: selfTopicA->B
+        selfOutputChannel:
+          destination: selfTopicB->A
+          contentTye: text/plain
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: xz1996
+    password: 196806
+
+server:
+  port: 8085

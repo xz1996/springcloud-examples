@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xz1996/springcloud-config
+          username: xz1996
+          # the password has been symmetric encrypted
+          password: '{cipher}aec036fbb79840d6f8d46fe7a4222f8c7b46ddece2b4d59848480aeb29c4972e'
+          # it will search the file in "{application}" directory, note that the application name depends on
+          # the name of config client.
+          search-paths: '{application}'
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: xz1996
+    password: '{cipher}9274d61682967061a13ac4fefdde77010538649386521bf725cb27e28b1595c2'
+
+eureka:
+  client:
+    # the eureka server url
+    service-url:
+      defaultZone: http://localhost:8088/eureka/
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# this attribute only takes effect when it configures in bootstrap.yml
+encrypt:
+  key: ${spring.application.name}
